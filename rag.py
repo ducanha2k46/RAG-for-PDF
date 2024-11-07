@@ -1,14 +1,20 @@
 import argparse
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 from langchain.prompts import ChatPromptTemplate
 from langchain_community.llms.ollama import  Ollama
 
 from get_embedding_function import get_embedding_function
 
-CHROMA = ""
+CHROMA = "chroma"
 
 PROMT_TEMPLATE = """
+Answer the question based only on the following context:
 
+{context}
+
+---
+
+Answer the question based on the above context: {question}
 """
 
 def main():
@@ -27,8 +33,9 @@ def query_rag(query_text: str):
     prompt_template = ChatPromptTemplate.from_template(PROMT_TEMPLATE)
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt = prompt_template.format(context=context_text, question=query_text)
+    print(prompt)
 
-    model = Ollama(model="")
+    model = Ollama(model="llama3.2-vision:11b")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]

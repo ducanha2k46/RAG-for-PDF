@@ -1,7 +1,7 @@
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 
-data_path = "./data"
+DATA_PATH = "./data"
 
 def load_documents():
-    document_loader = PyPDFDirectoryLoader(data_path)
+    document_loader = PyPDFDirectoryLoader(DATA_PATH)
     return document_loader.load()

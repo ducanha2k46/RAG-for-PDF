@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
     args = parser.parse_args()
     if args.reset:
-        print("✨ Clearing Database")
+        print("Xóa database")
         clear_database()
 
     documents = load_documents()

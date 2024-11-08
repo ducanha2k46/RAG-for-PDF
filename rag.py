@@ -14,7 +14,7 @@ Answer the question based only on the following context:
 
 ---
 
-Answer the question based on the above context: {question}
+Answer the question based on the above context, the answer must be detailed, complete answer: {question}
 """
 
 def main():
@@ -28,14 +28,14 @@ def query_rag(query_text: str):
     embbedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA, embedding_function=embbedding_function)
 
-    results = db.similarity_search_with_score(query_text, k=3)
+    results = db.similarity_search_with_score(query_text, k=5)
 
     prompt_template = ChatPromptTemplate.from_template(PROMT_TEMPLATE)
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt = prompt_template.format(context=context_text, question=query_text)
     print(prompt)
 
-    model = Ollama(model="llama3.2-vision:11b")
+    model = Ollama(model="llama3.1:70b")
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]

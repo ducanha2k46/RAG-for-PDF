@@ -58,6 +58,8 @@ def add_to_chormadb(chunks: list[Document]):
         persist_directory=CHROMA_PATH, embedding_function=get_embedding_function()
     )
 
+    print("Model sử dụng là" + get_embedding_function().model)
+
     chunks_with_ids = calculate_chunk_ids(chunks)
 
     existing_items = db.get(include=[])

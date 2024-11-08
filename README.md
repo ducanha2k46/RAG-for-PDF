@@ -2,8 +2,8 @@
 ## Setup
 1. Install llama
 - Dowload Ollama: https://ollama.com/download
-- Install LLM: `ollama run llama3.2-vision`
-2. Clone github
+- Install LLM: `ollama run llama3.1:70b`
+1. Clone github
 - `git clone https://github.com/ducanha2k46/RAG-for-PDF.git`
 - `pip install -r requirments.txt`
 ## Using

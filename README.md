@@ -7,5 +7,5 @@
 - `git clone https://github.com/ducanha2k46/RAG-for-PDF.git`
 - `pip install -r requirments.txt`
 ## Using
-- Run `python processing_data.py`
+- Run `python processing_data.py --reset`
 - Run `python rag.py "Question"`
